@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".MainActivity2">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="40dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="304dp"
+        android:layout_marginTop="180dp"
+        android:background="#76FF3D"
+        android:textAlignment="center"
+        android:textColor="#FFDB00"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="40dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="116dp"
+        android:backgroundTint="#44FF00"
+        android:text="2"
+        android:textColor="#FFEF00"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="40dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="192dp"
+        android:layout_marginTop="116dp"
+        android:backgroundTint="#44FF00"
+        android:text="1"
+        android:textColor="#FFEF00"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="40dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="116dp"
+        android:backgroundTint="#44FF00"
+        android:text="3"
+        android:textColor="#FFEF00"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="40dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="336dp"
+        android:layout_marginTop="116dp"
+        android:backgroundTint="#44FF00"
+        android:text="4"
+        android:textColor="#FFEF00"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@android:style/Widget.Holo.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="32dp"
+        android:text="Настройки"
+        android:textAlignment="center"
+        android:textColor="#FFF300"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="128dp"
+        android:text="Звуковые эффекты"
+        android:textColor="#59FF00"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@android:style/Widget.Holo.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="184dp"
+        android:text="Громкость"
+        android:textColor="#4CFF00"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@android:style/Widget.Holo.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="240dp"
+        android:text="Яркость"
+        android:textColor="#5AFF00"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        style="@android:style/Widget.Holo.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="296dp"
+        android:text="Цвет углей"
+        android:textColor="#5AFF00"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
+
+    />
+
+
+
+
+
+
+
+    ]]>
+
+    <SeekBar
+        android:id="@+id/seekBar2"
+        android:layout_width="157dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="184dp"
+        android:background="#FFE500"
+        android:max="100"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBar3"
+        android:layout_width="157dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="240dp"
+        android:max="100"
+        android:progress="3"
+        android:background="#FFEB3B"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="167dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="296dp"
+        android:background="#52FF08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="364dp"
+        android:text="Подключиться"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="216dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="440dp"
+        android:background="#EA0808"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
