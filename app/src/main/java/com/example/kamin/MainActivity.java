@@ -1,97 +1,105 @@
 package com.example.kamin;
 
+
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.text.format.Formatter;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 public class MainActivity extends AppCompatActivity {
-    @NotNull
-    public static String inBufr;
-    public static byte btndn = 1;
+    public static byte btndn = 100;
     private boolean flag;
-    private Object v;
-    private boolean fla;
     public static String direction;
     public static String ipPub;
     public static String getFromServer;
     public static String ipPu;
 
-
     int[] drawable = {R.drawable.frieoff, R.drawable.frielow, R.drawable.friemid, R.drawable.friehigh};//картинки на главной странице огонь
     int i = 0;
+
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE); //получение локального IP
         String ipAddress = Formatter.formatIpAddress(wifiManager.getConnectionInfo().getIpAddress());
-
-
-        //дублируем ip на всякий
-        String[] ipAdds = ipAddress.split("\\."); //режем IP на квартеты
+        String[] ipAdds = ipAddress.split("\\.");
         {
             MainActivity.ipPu = (ipAdds[0] + "." + ipAdds[1] + "." + ipAdds[2] + ".255");
         }
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+//Блок кнопок
+        TextView textView7 = (TextView) findViewById(R.id.textView7);
+        ImageButton imageButton2 = (ImageButton) findViewById(R.id.imageButton2);// вкл/выкл обогрев
+
+        ImageButton imageButton6 = (ImageButton) findViewById(R.id.imageButton6); // вкл/выкл вентилятор
+        ImageButton imageButton7 = (ImageButton) findViewById(R.id.imageButton7); // вкл/выкл розетки на камине
+        ImageButton imageButton9 = (ImageButton) findViewById(R.id.imageButton9); // вкл/выкл обогрев звук
+        ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton); // картинки на главной странице огонь меняются
+        ImageButton imageButton11 = (ImageButton) findViewById(R.id.imageButton11); //выход из приложения
+        ImageButton imageButton10 = (ImageButton) findViewById(R.id.imageButton10); //переход на др стр настройки
+//конец блока кнопок
+
         int hate = 0;
         ipPub = ipPu;
 
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
-        Udp_client udp_client = new Udp_client();
-        Udp_receive udp_receive = new Udp_receive();
-        executorService.execute(udp_receive);
-        executorService.execute(udp_client);
+        new Udp_client().start();
+        int[] sost = {2};
+        Handler handler_for_udpReceive = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+
+//                byte[] bytes = getFromServer.getBytes();
+//                for (byte s : bytes) {
+//                    System.out.print(s);
+//                }
 
 
+                getFromServer = msg.obj.toString();
+                if (getFromServer.contains("HEATON")) {
+                    imageButton2.setImageResource(R.drawable.obogrev2);
+                    textView7.setText(getFromServer);
+                    sost[0] = 1;
+                }
+                if (getFromServer.contains("HEATOFF")) {
+                    imageButton2.setImageResource(R.drawable.obogrev1);
+                    textView7.setText(getFromServer);
+                    sost[0] = 2;
+                }
 
+            }
+        };
 
-        inBufr = Udp_client.inBuf;
-
-
-//        if (getFromServer.equals("HATEON")) {
-//            hate = 1;
-//        }
-
-        int finalHate1 = hate;
-
-        TextView TextView7 = (TextView) findViewById(R.id.textView7);
-        ImageButton imageButton2 = (ImageButton) findViewById(R.id.imageButton2);// вкл/выкл обогрев
+        new Udp_receive(handler_for_udpReceive).start();
         imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (finalHate1 == 0) {
-                    TextView7.setText(getFromServer);
-                    btndn = 100;
-                    direction = "HATEON";
-                    imageButton2.setImageResource(R.drawable.obogrev2);
+                if (sost[0] == 1) {
                     btndn = 1;
+                    direction = "HEATOFF";
+                    btndn = 100;
                 }
-                if (finalHate1 == 1) {
-                    btndn = 100;
-                    direction = "HATEOFF";
-                    imageButton2.setImageResource(R.drawable.obogrev1);
+                if (sost[0] == 2) {
                     btndn = 1;
+                    direction = "HEATON";
+                    btndn = 100;
                 }
             }
         });
-        
 
-        final ImageButton imageButton6 = (ImageButton) findViewById(R.id.imageButton6); // вкл/выкл вентилятор
+
         imageButton6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final ImageButton imageButton7 = (ImageButton) findViewById(R.id.imageButton7); // вкл/выкл розетки на камине
+
         imageButton7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final ImageButton imageButton9 = (ImageButton) findViewById(R.id.imageButton9); // вкл/выкл обогрев звук
+
         imageButton9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        final ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton); // картинки на главной странице огонь меняются
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        final ImageButton imageButton11 = (ImageButton) findViewById(R.id.imageButton11); //выход из приложения
         imageButton11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final ImageButton imageButton10 = (ImageButton) findViewById(R.id.imageButton10); //переход на др стр настройки
+
         imageButton10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
