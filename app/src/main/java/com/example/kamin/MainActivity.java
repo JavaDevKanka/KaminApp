@@ -68,12 +68,12 @@ public class MainActivity extends AppCompatActivity {
 
 
                 getFromServer = msg.obj.toString();
-                if (getFromServer.contains("HEATON")) {
+                if (getFromServer.contains("HEATON1")) {
                     imageButton2.setImageResource(R.drawable.obogrev2);
                     textView7.setText(getFromServer);
                     sost[0] = 1;
                 }
-                if (getFromServer.contains("HEATOFF")) {
+                if (getFromServer.contains("HEATOFF1")) {
                     imageButton2.setImageResource(R.drawable.obogrev1);
                     textView7.setText(getFromServer);
                     sost[0] = 2;
